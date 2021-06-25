@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Our discounts{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Our Discounts</h1>
+    <a href="{{ path('new_discount') }}">
+        Create New
+    </a>
+    <table>
+      <tr>
+        <th>Product Name</th>
+        <th>Units</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+      {% for discount in discounts %}
+      <tr>
+        <td align="center">{{ discount.getProdId().getName() }}</td>
+        <td align="center">{{ discount.getUnits() }}</td>
+        <td align="center">{{ discount.getPrice() }}</td>
+        <td align="left">
+            <a href="discounts/edit/{{ discount.getId() }}">Edit</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    <a href="{{ path('orders') }}">
+        Back to Orders
+    </a>
+</div>
+{% endblock %}
